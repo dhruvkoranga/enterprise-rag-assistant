@@ -8,31 +8,39 @@ class VectorStore:
         self,
         collection_name: str = "company_handbook"
     ):
-
         self.collection_name = collection_name
 
-        self.client = QdrantClient(":memory:")
-
-        self.client.create_collection(
-            collection_name=self.collection_name,
-            vectors_config=VectorParams(
-                size=384,
-                distance=Distance.COSINE
-            )
+        self.client = QdrantClient(
+            path="qdrant_data"
         )
+
+        collections = self.client.get_collections()
+
+        collection_names = [
+            collection.name
+            for collection in collections.collections
+        ]
+
+        if self.collection_name not in collection_names:
+
+            self.client.create_collection(
+                collection_name=self.collection_name,
+                vectors_config=VectorParams(
+                    size=384,
+                    distance=Distance.COSINE
+                )
+            )
 
     def add_documents(
         self,
         embeddings,
         chunks: list[dict]
     ):
-
         points = []
 
         for index, (embedding, chunk) in enumerate(
             zip(embeddings, chunks)
         ):
-
             points.append(
                 PointStruct(
                     id=index,
@@ -54,7 +62,6 @@ class VectorStore:
         query_embedding,
         limit: int = 3
     ):
-
         results = self.client.query_points(
             collection_name=self.collection_name,
             query=query_embedding.tolist(),
@@ -62,3 +69,6 @@ class VectorStore:
         ).points
 
         return results
+
+    def close(self):
+        self.client.close()

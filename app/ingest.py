@@ -99,6 +99,6 @@ def ingest_document():
 
 if __name__ == "__main__":
 
-    vector_store, embedding_service = (
-        ingest_document()
-    )
+    vector_store, embedding_service = ingest_document()
+
+    vector_store.close()
