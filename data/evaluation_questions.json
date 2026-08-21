@@ -1,0 +1,50 @@
+[
+    {
+        "question": "How many vacation days do employees get?",
+        "expected_section": "Leave Policy"
+    },
+    {
+        "question": "What is the annual paid time-off allowance?",
+        "expected_section": "Leave Policy"
+    },
+    {
+        "question": "How often can employees work remotely?",
+        "expected_section": "Remote Work Policy"
+    },
+    {
+        "question": "What is the company's work-from-home allowance?",
+        "expected_section": "Remote Work Policy"
+    },
+    {
+        "question": "When do employees become eligible for health insurance?",
+        "expected_section": "Health Insurance Policy"
+    },
+    {
+        "question": "How soon after joining does medical coverage begin?",
+        "expected_section": "Health Insurance Policy"
+    },
+    {
+        "question": "How long do employees have to submit an expense claim?",
+        "expected_section": "Expense Policy"
+    },
+    {
+        "question": "What is the deadline for claiming business expenses?",
+        "expected_section": "Expense Policy"
+    },
+    {
+        "question": "What is the approval requirement for vacation longer than five days?",
+        "expected_section": "Leave Policy"
+    },
+    {
+        "question": "Who needs to approve an extended vacation?",
+        "expected_section": "Leave Policy"
+    },
+    {
+        "question": "How many sick leaves can employees take?",
+        "expected_section": null
+    },
+    {
+        "question": "Does the company provide dental insurance?",
+        "expected_section": null
+    }
+]

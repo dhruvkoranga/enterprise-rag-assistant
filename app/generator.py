@@ -1,35 +1,24 @@
-import os
-
-from dotenv import load_dotenv
-from google import genai
-
-
-load_dotenv()
+from ollama import chat
 
 
 class LLMService:
 
-    def __init__(self):
+    def __init__(self, model="llama3.2:3b"):
+        self.model = model
 
-        api_key = os.getenv("GEMINI_API_KEY")
+    def generate(self, prompt: str) -> str:
 
-        if not api_key:
-            raise ValueError(
-                "GEMINI_API_KEY is not set."
-            )
-
-        self.client = genai.Client(
-            api_key=api_key
+        response = chat(
+            model=self.model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            options={
+                "temperature": 0
+            }
         )
 
-    def generate(
-        self,
-        prompt: str
-    ):
-
-        response = self.client.models.generate_content(
-            model="gemini-3.5-flash",
-            contents=prompt
-        )
-
-        return response.text
+        return response.message.content.strip()

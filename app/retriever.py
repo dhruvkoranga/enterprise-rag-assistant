@@ -15,7 +15,8 @@ class Retriever:
     def retrieve(
         self,
         query: str,
-        top_k: int = 3
+        top_k: int = 3,
+        min_score: float | None = None
     ):
 
         query_embedding = (
@@ -27,5 +28,13 @@ class Retriever:
             query_embedding,
             limit=top_k
         )
+
+        if min_score is not None:
+
+            results = [
+                result
+                for result in results
+                if result.score >= min_score
+                ]
 
         return results

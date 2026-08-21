@@ -1,6 +1,26 @@
-.venv/
-__pycache__/
-*.pyc
+# Environment
 .env
-.pytest_cache/
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+
+# Local vector database
 qdrant_data/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
